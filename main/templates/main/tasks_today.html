@@ -1,0 +1,10 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+<h1>{{ title }}</h1>
+{% for task in tasks %}
+<p>{{ task.title }}</p>
+<p>{{ task.content }}</p>
+<p>{{ task.deadline }}</p>
+{% endfor %}
+{% endblock %}

@@ -17,6 +17,9 @@ class Task(models.Model):
     priority = models.IntegerField(choices=PRIORITY_CHOICES)
     subtask = models.ForeignKey('SubTask', on_delete=models.CASCADE, blank=True, null=True)
 
+    def __str__(self):
+        return self.title
+
 
 class SubTask(models.Model):
     content = models.TextField()
