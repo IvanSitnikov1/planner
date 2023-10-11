@@ -6,5 +6,6 @@
 <p>{{ task.title }}</p>
 <p>{{ task.content }}</p>
 <p>{{ task.deadline }}</p>
+<a href="{{ task.get_absolute_url }}">Подробнее</a>
 {% endfor %}
 {% endblock %}

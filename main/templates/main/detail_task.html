@@ -1,0 +1,15 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+<h1>{{ title }}</h1>
+<h3>{{ task.title }}</h3>
+<p>{{ task.content }}</p>
+<p>{{ task.deadline }}</p>
+{% if task.active %}
+<p>Задача активна</p>
+{% else %}
+<p>Задача не активна</p>
+{% endif %}
+<a href="{% url 'update-task' task.pk %}">Редактировать</a>
+<a href="{% url 'delete-task' task.pk %}">Удалить</a>
+{% endblock %}
