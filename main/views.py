@@ -4,7 +4,7 @@ from django.contrib.auth import logout, login
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
 from django.shortcuts import render, redirect
-from django.urls import reverse_lazy,reverse
+from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, CreateView, DetailView, UpdateView
 from django.db.models import Q
 
@@ -12,31 +12,7 @@ from .models import *
 from .forms import *
 
 
-class CreateAndReadComment(CreateView, ListView):
-    model = Comment
-    context_object_name = 'comments'
-    form_class = CreateAndReadCommentForm
-    template_name = 'main/list_comments.html'
-
-    def get_context_data(self, *, object_list=None, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['title'] = 'Комментарии'
-        pk = self.kwargs['pk']
-        context['pk'] = pk
-        return context
-
-    def get_queryset(self):
-        return Comment.objects.filter(task__pk=self.kwargs['pk'])
-
-    def form_valid(self, form):
-        comment = form.save(commit=False)
-        pk = self.kwargs['pk']
-        task = Task.objects.get(pk=pk)
-        comment.task = task
-        comment.save()
-        return redirect(reverse('comments', kwargs={'pk': pk}))
-
-
+# Регистрация и аутентификация
 class RegisterUser(CreateView):
     form_class = RegisterUserForm
     template_name = 'main/register.html'
@@ -68,6 +44,7 @@ def logout_user(request):
     return redirect('login')
 
 
+# CRUD для задачи
 class CreateTask(LoginRequiredMixin, CreateView):
     form_class = CreateTaskForm
     template_name = 'main/create_task.html'
@@ -87,44 +64,9 @@ class CreateTask(LoginRequiredMixin, CreateView):
         return redirect(reverse('detail-task', kwargs={'pk': task.pk}))
 
 
-class CreateSubTask(CreateView):
-    form_class = CreateSubTaskForm
-    template_name = 'main/create_subtask.html'
-    success_url = reverse_lazy('tasks-list')
-
-    def get_context_data(self, *, object_list=None, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['title'] = 'Создание подзадачи'
-        pk = self.kwargs['pk']
-        context['pk'] = pk
-        return context
-
-    def form_valid(self, form):
-        subtask = form.save(commit=False)
-        pk = self.kwargs['pk']
-        task = Task.objects.get(pk=pk)
-        subtask.task = task
-        subtask.save()
-        return redirect(reverse('detail-subtask', kwargs={'pk': pk}))
-
-
 class DetailTask(DetailView):
     model = Task
     template_name = 'main/detail_task.html'
-    context_object_name = 'task'
-
-    def get_context_data(self, *, object_list=None, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['title'] = 'Описание задачи'
-        pk = self.kwargs['pk']
-        subtasks = SubTask.objects.filter(task__pk=pk)
-        context['subtasks'] = subtasks
-        return context
-
-
-class DetailSubTask(DetailView):
-    model = Task
-    template_name = 'main/detail_subtask.html'
     context_object_name = 'task'
 
     def get_context_data(self, *, object_list=None, **kwargs):
@@ -153,12 +95,75 @@ def delete_task(request, pk):
     return redirect('tasks-list')
 
 
+# Создание и чтение комментариев
+class CreateAndReadComment(CreateView, ListView):
+    model = Comment
+    context_object_name = 'comments'
+    form_class = CreateAndReadCommentForm
+    template_name = 'main/list_comments.html'
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Комментарии'
+        pk = self.kwargs['pk']
+        context['pk'] = pk
+        return context
+
+    def get_queryset(self):
+        return Comment.objects.filter(task__pk=self.kwargs['pk'])
+
+    def form_valid(self, form):
+        comment = form.save(commit=False)
+        pk = self.kwargs['pk']
+        task = Task.objects.get(pk=pk)
+        comment.task = task
+        comment.save()
+        return redirect(reverse('comments', kwargs={'pk': pk}))
+
+
+# CRUD для подзадачи
+class CreateSubTask(CreateView):
+    form_class = CreateSubTaskForm
+    template_name = 'main/create_subtask.html'
+    success_url = reverse_lazy('tasks-list')
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Создание подзадачи'
+        pk = self.kwargs['pk']
+        context['pk'] = pk
+        return context
+
+    def form_valid(self, form):
+        subtask = form.save(commit=False)
+        pk = self.kwargs['pk']
+        task = Task.objects.get(pk=pk)
+        subtask.task = task
+        subtask.save()
+        return redirect(reverse('detail-subtask', kwargs={'pk': pk}))
+
+
+class DetailSubTask(DetailView):
+    model = Task
+    template_name = 'main/detail_subtask.html'
+    context_object_name = 'task'
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Описание задачи'
+        pk = self.kwargs['pk']
+        subtasks = SubTask.objects.filter(task__pk=pk)
+        context['subtasks'] = subtasks
+        return context
+
+
 def delete_subtask(request, pk):
     subtask = SubTask.objects.get(pk=pk)
     subtask.delete()
     return redirect(request.META.get('HTTP_REFERER'))
 
 
+# Страницы с главного меню
 def index(request):
     context = {'title': 'Главная страница'}
     return render(request, 'main/index.html', context=context)
@@ -203,7 +208,8 @@ class TasksToday(LoginRequiredMixin, ListView):
         else:
             author = self.request.user.username
             return Task.objects.filter(
-                Q(deadline__lte=datetime.now()) & Q(active=True) & Q(author=author)
+                Q(deadline__lte=datetime.now()) & Q(active=True) & Q(
+                    author=author)
             ).order_by('-date_added')
 
 
