@@ -1,6 +1,7 @@
 from datetime import datetime
 
 from django.contrib.auth import logout, login
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy,reverse
@@ -67,10 +68,11 @@ def logout_user(request):
     return redirect('login')
 
 
-class CreateTask(CreateView):
+class CreateTask(LoginRequiredMixin, CreateView):
     form_class = CreateTaskForm
     template_name = 'main/create_task.html'
     success_url = reverse_lazy('tasks-list')
+    login_url = reverse_lazy('login')
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -162,39 +164,64 @@ def index(request):
     return render(request, 'main/index.html', context=context)
 
 
-class TasksList(ListView):
+class TasksList(LoginRequiredMixin, ListView):
     model = Task
     template_name = 'main/tasks_list.html'
     context_object_name = 'tasks'
-    queryset = Task.objects.filter(active=True).order_by('-date_added')
+    login_url = reverse_lazy('login')
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Задачи'
         return context
 
+    def get_queryset(self):
+        if self.request.user.username == 'admin':
+            return Task.objects.filter(active=True).order_by('-date_added')
+        else:
+            return Task.objects.filter(
+                Q(author=self.request.user.username) & Q(active=True)
+            ).order_by('-date_added')
 
-class TasksToday(ListView):
+
+class TasksToday(LoginRequiredMixin, ListView):
     model = Task
     template_name = 'main/tasks_list.html'
     context_object_name = 'tasks'
-    queryset = Task.objects.filter(
-        Q(deadline__lte=datetime.now()) & Q(active=True)
-    ).order_by('-date_added')
+    login_url = reverse_lazy('login')
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Задачи на сегодня'
         return context
 
+    def get_queryset(self):
+        if self.request.user.username == 'admin':
+            return Task.objects.filter(
+                Q(deadline__lte=datetime.now()) & Q(active=True)
+            ).order_by('-date_added')
+        else:
+            author = self.request.user.username
+            return Task.objects.filter(
+                Q(deadline__lte=datetime.now()) & Q(active=True) & Q(author=author)
+            ).order_by('-date_added')
 
-class Archive(ListView):
+
+class Archive(LoginRequiredMixin, ListView):
     model = Task
     template_name = 'main/tasks_list.html'
     context_object_name = 'tasks'
-    queryset = Task.objects.filter(active=False).order_by('-date_added')
+    login_url = reverse_lazy('login')
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Архивные задачи'
         return context
+
+    def get_queryset(self):
+        if self.request.user.username == 'admin':
+            return Task.objects.filter(active=False).order_by('-date_added')
+        else:
+            return Task.objects.filter(
+                Q(author=self.request.user.username) & Q(active=False)
+            ).order_by('-date_added')
