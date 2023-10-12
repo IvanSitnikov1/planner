@@ -3,9 +3,9 @@
 {% block content %}
 <h1>{{ title }}</h1>
 {% for task in tasks %}
-<p>{{ task.title }}</p>
-<p>{{ task.content }}</p>
-<p>{{ task.deadline }}</p>
+<p>Задача: {{ task.title }}</p>
+<p>Описание: {{ task.content }}</p>
+<p>Срок выполнения: {{ task.deadline }}</p>
 <a href="{{ task.get_absolute_url }}">Подробнее</a>
 {% endfor %}
 {% endblock %}

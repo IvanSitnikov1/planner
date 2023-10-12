@@ -16,24 +16,10 @@ class Task(models.Model):
     )
     deadline = models.DateField(verbose_name='Срок выполнения')
     active = models.BooleanField(default=True, verbose_name='Активно')
-    comments = models.ForeignKey(
-        'Comment',
-        on_delete=models.CASCADE,
-        blank=True,
-        null=True,
-        verbose_name='Комментарии'
-    )
     author = models.CharField(max_length=255, verbose_name='Автор')
     priority = models.IntegerField(
         choices=PRIORITY_CHOICES,
         verbose_name='Приоритет'
-    )
-    subtask = models.ForeignKey(
-        'SubTask',
-        on_delete=models.CASCADE,
-        blank=True,
-        null=True,
-        verbose_name='Заголовок'
     )
 
     def __str__(self):
@@ -46,9 +32,24 @@ class Task(models.Model):
 class SubTask(models.Model):
     content = models.TextField(verbose_name='Контент')
     active = models.BooleanField(default=True, verbose_name='Активно')
-    date_added = models.DateTimeField(auto_now_add=True, verbose_name='Дата добавления')
+    date_added = models.DateTimeField(
+        auto_now_add=True,
+        verbose_name='Дата добавления'
+    )
+    task = models.ForeignKey(
+        'Task',
+        on_delete=models.CASCADE,
+        blank=True,
+        null=True,
+    )
 
 
 class Comment(models.Model):
     text = models.TextField()
     date_added = models.DateTimeField(auto_now_add=True)
+    task = models.ForeignKey(
+        'Task',
+        on_delete=models.CASCADE,
+        blank=True,
+        null=True,
+    )

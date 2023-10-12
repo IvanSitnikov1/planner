@@ -11,6 +11,12 @@ class CreateTaskForm(forms.ModelForm):
         fields = ['title', 'content', 'deadline', 'priority']
 
 
+class CreateSubTaskForm(forms.ModelForm):
+    class Meta:
+        model = SubTask
+        fields = ['content']
+
+
 class UpdateTaskForm(forms.ModelForm):
     class Meta:
         model = Task
