@@ -5,6 +5,12 @@ from django.contrib.auth.models import User
 from .models import *
 
 
+class CreateAndReadCommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ['text']
+
+
 class CreateTaskForm(forms.ModelForm):
     class Meta:
         model = Task

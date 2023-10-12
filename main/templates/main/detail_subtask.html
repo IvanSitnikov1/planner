@@ -1,0 +1,17 @@
+{% extends 'main/detail_task.html' %}
+
+{% block subtask %}
+<div>
+    <h4>Подзадачи</h4>
+    <a href="{% url 'create-subtask' task.pk %}">Добавить</a>
+    {% for subtask in subtasks %}
+        <p>{{ subtask.content }}</p>
+        {% if subtask.active %}
+            <h4>Задача активна</h4>
+        {% else %}
+            <h4>Задача выполнена</h4>
+        {% endif %}
+        <a href="{% url 'delete-subtask' subtask.pk %}">Удалить</a><br>
+    {% endfor %}
+</div>
+{% endblock %}

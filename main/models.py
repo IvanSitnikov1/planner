@@ -45,7 +45,7 @@ class SubTask(models.Model):
 
 
 class Comment(models.Model):
-    text = models.TextField()
+    text = models.TextField(verbose_name='Комментарий')
     date_added = models.DateTimeField(auto_now_add=True)
     task = models.ForeignKey(
         'Task',

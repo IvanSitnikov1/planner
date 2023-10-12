@@ -11,6 +11,31 @@ from .models import *
 from .forms import *
 
 
+class CreateAndReadComment(CreateView, ListView):
+    model = Comment
+    context_object_name = 'comments'
+    form_class = CreateAndReadCommentForm
+    template_name = 'main/list_comments.html'
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Комментарии'
+        pk = self.kwargs['pk']
+        context['pk'] = pk
+        return context
+
+    def get_queryset(self):
+        return Comment.objects.filter(task__pk=self.kwargs['pk'])
+
+    def form_valid(self, form):
+        comment = form.save(commit=False)
+        pk = self.kwargs['pk']
+        task = Task.objects.get(pk=pk)
+        comment.task = task
+        comment.save()
+        return redirect(reverse('comments', kwargs={'pk': pk}))
+
+
 class RegisterUser(CreateView):
     form_class = RegisterUserForm
     template_name = 'main/register.html'
@@ -78,12 +103,26 @@ class CreateSubTask(CreateView):
         task = Task.objects.get(pk=pk)
         subtask.task = task
         subtask.save()
-        return redirect(reverse('detail-task', kwargs={'pk': pk}))
+        return redirect(reverse('detail-subtask', kwargs={'pk': pk}))
 
 
 class DetailTask(DetailView):
     model = Task
     template_name = 'main/detail_task.html'
+    context_object_name = 'task'
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Описание задачи'
+        pk = self.kwargs['pk']
+        subtasks = SubTask.objects.filter(task__pk=pk)
+        context['subtasks'] = subtasks
+        return context
+
+
+class DetailSubTask(DetailView):
+    model = Task
+    template_name = 'main/detail_subtask.html'
     context_object_name = 'task'
 
     def get_context_data(self, *, object_list=None, **kwargs):
