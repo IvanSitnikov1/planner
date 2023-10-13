@@ -11,22 +11,86 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-<div class="menu">
-    <a href="{% url 'index' %}">Главная</a>
-    <a href="{% url 'tasks-list' %}">Задачи</a>
-    <a href="{% url 'tasks-today' %}">Сегодня</a>
-    <a href="{% url 'archive' %}">Архив</a>
-    <a href="{% url 'create-task' %}">Создать задачу</a>
-    {% if request.user.is_authenticated %}
-        <a href="{% url 'logout' %}">Выйти</a>
-        <a href="#">{{ request.user.username }}</a>
-    {% else %}
-        <a href="{% url 'login' %}">Войти</a>
-        <a href="{% url 'register' %}">Регистрация</a>
-    {% endif %}
+<header class="p-3 text-bg-dark">
+    <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0"><li class="fs-4">Header</li></ul>
+            <div class="text-end">
+                {% if request.user.is_authenticated %}
+                    <a href="{% url 'logout' %}"><button type="button" class="btn btn-outline-light me-2">Выйти</button></a>
+                    <span class="fs-4">{{ request.user.username }}</span>
+                {% else %}
+                    <a href="{% url 'login' %}"><button type="button" class="btn btn-outline-light me-2">Войти</button></a>
+                    <a href="{% url 'register' %}"><button type="button" class="btn btn-outline-light me-2">Регистрация</button></a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="container a"><div class="row justify-content-start"><div class="col-3">
+<div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark" style="width: 280px; height: 100%; min-height: calc(100vh - 190px);">
+    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+        <svg class="bi pe-none me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
+        <span class="fs-4">Sidebar</span>
+    </a>
+    <hr>
+    <ul class="nav nav-pills flex-column mb-auto">
+        <li class="nav-item">
+            {% if request.path == '/' %}
+                <a href="{% url 'index' %}" class="nav-link active" aria-current="page">
+            {% else %}
+                <a href="{% url 'index' %}" class="nav-link text-white" aria-current="page">
+            {% endif %}
+            <svg class="bi pe-none me-2" width="16" height="16"></svg>Главная</a>
+        </li>
+        <li class="nav-item">
+            {% if request.path == '/tasks-list/' %}
+                <a href="{% url 'tasks-list' %}" class="nav-link active" aria-current="page">
+            {% else %}
+                <a href="{% url 'tasks-list' %}" class="nav-link text-white" aria-current="page">
+            {% endif %}
+            <svg class="bi pe-none me-2" width="16" height="16"></svg>Задачи</a>
+        </li>
+        <li class="nav-item">
+            {% if request.path == '/tasks-today/' %}
+                <a href="{% url 'tasks-today' %}" class="nav-link active" aria-current="page">
+            {% else %}
+                <a href="{% url 'tasks-today' %}" class="nav-link text-white" aria-current="page">
+            {% endif %}
+            <svg class="bi pe-none me-2" width="16" height="16"></svg>Сегодня</a>
+        </li>
+        <li class="nav-item">
+            {% if request.path == '/archive/' %}
+                <a href="{% url 'archive' %}" class="nav-link active" aria-current="page">
+            {% else %}
+                <a href="{% url 'archive' %}" class="nav-link text-white" aria-current="page">
+            {% endif %}
+            <svg class="bi pe-none me-2" width="16" height="16"></svg>Архив</a>
+        </li>
+        <li class="nav-item">
+            {% if request.path == '/create-task/' %}
+                <a href="{% url 'create-task' %}" class="nav-link active" aria-current="page">
+            {% else %}
+                <a href="{% url 'create-task' %}" class="nav-link text-white" aria-current="page">
+            {% endif %}
+            <svg class="bi pe-none me-2" width="16" height="16"></svg>Создать задачу</a>
+        </li>
+    </ul>
+    <hr>
+</div></div>
+
+<div class="col-9"><div class="">{% block content %}{% endblock %}</div></div></div></div>
+
+<div class="container">
+  <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+    <div class="col-md-4 d-flex align-items-center">
+      <a href="/" class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1">
+        <svg class="bi" width="30" height="24"><use xlink:href="#bootstrap"></use></svg>
+      </a>
+      <span class="mb-3 mb-md-0 text-body-secondary">© 2023 Company, Inc</span>
+    </div>
+  </footer>
 </div>
-
-{% block content %}{% endblock %}
-
 </body>
 </html>
