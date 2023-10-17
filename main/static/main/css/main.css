@@ -10,7 +10,7 @@
     flex-direction:row;
     justify-content: space-between;
     align-items: center;
-    background-color: #202124;
+    background-color: #0D6EFD;
     padding-left: 10px;
     padding-right: 10px;
     height: 40px;
@@ -26,13 +26,13 @@
     appearance: none;
     color: #E8EAE0;
     border:  1px solid #E8EAE0 ;
-    background-color: #202124;
+    background-color: #0D6EFD;
     border-radius: 4px;
     padding: 4px 4px;
     transition: all 0.3s;
 }
 .header-btn:hover{
-color: #202124;
+color: #0D6EFD;
 background-color: #E8EAE0;
 }
 .header-name-div{
@@ -43,7 +43,7 @@ background-color: #E8EAE0;
     position:relative ;
     color: #E8EAE0;
     width: 88px;
-    height: 535px;
+    height: 100vh;
     background-color: #202124;
 }
 h1{
@@ -79,6 +79,11 @@ h1{
     color: #E8EAE0;
     border-radius: 4px;
     margin: 0 4px 0 4px;
+    transition: background-color 0.3s;
+}
+.nav-link:hover{
+    background-color: #E8EAE0;
+    color: #202124;
 }
 .active{
     background-color:#0D6EFD ;
@@ -90,17 +95,7 @@ h1{
 .main-container{
     margin: 4px;
 }
-.footer-labels{
-    margin: 4px 0px 0px 4px;
-}
-footer{
-    position: fixed;
-    bottom: 20px;
-}
-.footer-line{
-width: 768px;
-height: 1px;
-}
+
 @media (min-width: 768px ) {
     .header-bar{
         height: 60px;
@@ -113,7 +108,7 @@ height: 1px;
     }
     .header-btn{
         border:  2px solid #E8EAE0 ;
-        background-color: #202124;
+        
         border-radius: 4px;
         padding: 8px 8px;
     }
@@ -129,7 +124,6 @@ height: 1px;
     }
     .sidebar-div{
         width: 196px;
-        height: 680px;
     }
     .sidebar-line{
         width: 194px;
@@ -145,16 +139,4 @@ height: 1px;
     }
     .main-container{
         margin: 8px;
-    }
-    .footer-labels{
-        margin: 8px 0px 0px 8px;
-    }
-    footer{
-        position: fixed;
-        bottom: 40px;
-    }
-    .footer-line{
-        width: 1920px;
-        height: 2px;
-    }
-}
+    }}
