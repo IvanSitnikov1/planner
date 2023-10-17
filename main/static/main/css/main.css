@@ -1,6 +1,7 @@
+/* main width (mobile first) */
 *{
     margin: 0;
-    pad: 0;
+    padding: 0;
     font-family: sans-serif;
     font-size: small;
 }
@@ -10,7 +11,7 @@
     flex-direction:row;
     justify-content: space-between;
     align-items: center;
-    background-color: #202124;
+    background-color: #0D6EFD;
     padding-left: 10px;
     padding-right: 10px;
     height: 40px;
@@ -26,13 +27,13 @@
     appearance: none;
     color: #E8EAE0;
     border:  1px solid #E8EAE0 ;
-    background-color: #202124;
+    background-color: #0D6EFD;
     border-radius: 4px;
     padding: 4px 4px;
     transition: all 0.3s;
 }
 .header-btn:hover{
-color: #202124;
+color: #0D6EFD;
 background-color: #E8EAE0;
 }
 .header-name-div{
@@ -43,7 +44,7 @@ background-color: #E8EAE0;
     position:relative ;
     color: #E8EAE0;
     width: 88px;
-    height: 535px;
+    height: 100vh;
     background-color: #202124;
 }
 h1{
@@ -79,6 +80,11 @@ h1{
     color: #E8EAE0;
     border-radius: 4px;
     margin: 0 4px 0 4px;
+    transition: background-color 0.3s;
+}
+.nav-link:hover{
+    background-color: #E8EAE0;
+    color: #202124;
 }
 .active{
     background-color:#0D6EFD ;
@@ -88,19 +94,61 @@ h1{
     display: flex;
 }
 .main-container{
+    display: flex;
+    flex-direction: column;
     margin: 4px;
 }
-.footer-labels{
-    margin: 4px 0px 0px 4px;
+
+/* Tasks list appearance */
+
+.main-title{
+    text-align: center;
 }
-footer{
-    position: fixed;
-    bottom: 20px;
+.task-container-div{
+    margin-top: 12px;
+    display: flex;
+    flex-direction: column;
+
 }
-.footer-line{
-width: 768px;
-height: 1px;
+.task-title{
+    font-weight: bold;
+    align-self: center;
+    width: 80%;
 }
+.task-content-div{
+    border: 2px solid #0D6EFD;
+    border-radius: 4px;
+    width: 80%;
+    align-self: center;
+    height: 100px;
+    
+}
+.task-content{
+    margin: 0;
+    padding: 2px 4px;
+}
+.task-deadline-info-div{
+    align-self: center;
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.task-info-link{
+text-decoration: none;
+color: white;
+background-color:#0D6EFD;
+border-radius: 4px;
+padding: 2px 8px;
+transition: background-color 0.3s;
+}
+.task-info-link:hover{
+    color: black
+}
+
+/* iPad+ width */
+
 @media (min-width: 768px ) {
     .header-bar{
         height: 60px;
@@ -113,7 +161,7 @@ height: 1px;
     }
     .header-btn{
         border:  2px solid #E8EAE0 ;
-        background-color: #202124;
+        
         border-radius: 4px;
         padding: 8px 8px;
     }
@@ -129,13 +177,12 @@ height: 1px;
     }
     .sidebar-div{
         width: 196px;
-        height: 680px;
     }
     .sidebar-line{
         width: 194px;
         top: 12px;
         left: 2px;
-        border: 2px solid #e8eae046;
+        border: 1px solid #e8eae046;
     }
     .nav-item{
         margin-top: 24px;
@@ -145,16 +192,4 @@ height: 1px;
     }
     .main-container{
         margin: 8px;
-    }
-    .footer-labels{
-        margin: 8px 0px 0px 8px;
-    }
-    footer{
-        position: fixed;
-        bottom: 40px;
-    }
-    .footer-line{
-        width: 1920px;
-        height: 2px;
-    }
-}
+    }}
