@@ -126,4 +126,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = '/'
 
-ALLOWED_HOSTS = ['planner-w43w.onrender.com']
+ALLOWED_HOSTS = ['planner-w43w.onrender.com', '127.0.0.1']
