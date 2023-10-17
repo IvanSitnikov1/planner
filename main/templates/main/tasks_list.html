@@ -1,11 +1,62 @@
 {% extends 'main/base.html' %}
+<!-- <style>
+    .main-title{
+        text-align: center;
+    }
+    .task-container-div{
+        display: flex;
+        flex-direction: column;
 
+    }
+    .task-title{
+        font-weight: bold;
+        align-self: center;
+        width: 80%;
+    }
+    .task-content-div{
+        border: 2px solid #0D6EFD;
+        border-radius: 4px;
+        width: 80%;
+        align-self: center;
+        height: 100px;
+        
+    }
+    .task-content{
+        margin: 0;
+        padding: 2px 4px;
+    }
+    .task-deadline-info-div{
+        align-self: center;
+        width: 80%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .task-info-link{
+    text-decoration: none;
+    color: white;
+    background-color:#0D6EFD;
+    border-radius: 4px;
+    padding: 4px 8px;
+    transition: color 0.3s;
+    }
+    .task-info-link:hover{
+        color: black
+    }
+</style> -->
 {% block content %}
-<h1>{{ title }}</h1>
+<h1 class="main-title">{{ title }}</h1>
 {% for task in tasks %}
-    <p>Задача: {{ task.title }}</p>
-    <p>Описание: {{ task.content }}</p>
-    <p>Срок выполнения: {{ task.deadline }}</p>
-    <a href="{{ task.get_absolute_url }}">Подробнее</a>
+<div class="task-container-div">
+    <p class="task-title">Задача: {{ task.title }}</p>
+    <div class="task-content-div">
+        <p class="task-content">Описание: {{ task.content }}</p>
+    </div>
+    <div class="task-deadline-info-div">
+        <p class="task-deadline">Срок выполнения: {{ task.deadline }}</p>
+        <a class="task-info-link" href="{{ task.get_absolute_url }}">Подробнее</a>
+    </div>
+</div>
 {% endfor %}
 {% endblock %}

@@ -1,6 +1,7 @@
+/* main width (mobile first) */
 *{
     margin: 0;
-    pad: 0;
+    padding: 0;
     font-family: sans-serif;
     font-size: small;
 }
@@ -95,6 +96,55 @@ h1{
 .main-container{
     margin: 4px;
 }
+
+/* Tasks list appearance */
+
+.main-title{
+    text-align: center;
+}
+.task-container-div{
+    display: flex;
+    flex-direction: column;
+
+}
+.task-title{
+    font-weight: bold;
+    align-self: center;
+    width: 80%;
+}
+.task-content-div{
+    border: 2px solid #0D6EFD;
+    border-radius: 4px;
+    width: 80%;
+    align-self: center;
+    height: 100px;
+    
+}
+.task-content{
+    margin: 0;
+    padding: 2px 4px;
+}
+.task-deadline-info-div{
+    align-self: center;
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.task-info-link{
+text-decoration: none;
+color: white;
+background-color:#0D6EFD;
+border-radius: 4px;
+padding: 2px 8px;
+transition: background-color 0.3s;
+}
+.task-info-link:hover{
+    color: black
+}
+
+/* iPad+ width */
 
 @media (min-width: 768px ) {
     .header-bar{
