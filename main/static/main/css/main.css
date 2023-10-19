@@ -11,7 +11,7 @@
     flex-direction:row;
     justify-content: space-between;
     align-items: center;
-    background-color: #0D6EFD;
+    background-color: #003077;
     padding-left: 10px;
     padding-right: 10px;
     height: 40px;
@@ -27,7 +27,7 @@
     appearance: none;
     color: #E8EAE0;
     border:  1px solid #E8EAE0 ;
-    background-color: #0D6EFD;
+    background-color: #003077;
     border-radius: 4px;
     padding: 4px 4px;
     transition: all 0.3s;
@@ -87,11 +87,12 @@ h1{
     color: #202124;
 }
 .active{
-    background-color:#0D6EFD ;
+    background-color:#003077 ;
 }
 .sidebar-and-main-div{
     position: relative;
     display: flex;
+    background-color: #48007729;
 }
 .main-container{
     display: flex;
@@ -116,7 +117,7 @@ h1{
     width: 80%;
 }
 .task-content-div{
-    border: 2px solid #0D6EFD;
+    border: 2px solid #003077;
     border-radius: 4px;
     width: 80%;
     align-self: center;
@@ -136,15 +137,16 @@ h1{
     align-items: center;
 }
 .task-info-link{
+margin: 3px;
 text-decoration: none;
 color: white;
-background-color:#0D6EFD;
+background-color:#003077;
 border-radius: 4px;
 padding: 2px 8px;
 transition: background-color 0.3s;
 }
 .task-info-link:hover{
-    color: black
+    color: #00c6f5;
 }
 
 /* iPad+ width */
