@@ -49,9 +49,9 @@
 <h1 class="main-title">{{ title }}</h1>
 {% for task in tasks %}
 <div class="task-container-div">
-    <p class="task-title">Задача: {{ task.title }}</p>
+    <p class="task-title">{{ task.title }}</p>
     <div class="task-content-div">
-        <p class="task-content">Описание: {{ task.content }}</p>
+        <p class="task-content">{{ task.content }}</p>
     </div>
     <div class="task-deadline-info-div">
         <p class="task-deadline">Срок выполнения: {{ task.deadline }}</p>
