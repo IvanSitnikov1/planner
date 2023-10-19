@@ -150,6 +150,43 @@ transition: background-color 0.3s;
     color: #00c6f5;
 }
 
+/* Create task appearance */
+
+.inupt-item{
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
+
+.form-btn{
+    margin-top: 10px;
+}
+#enter-content{
+    height: 100px;
+    width: 40%;
+    border:2px solid #003077;
+}
+#enter-header{
+    border:2px solid #003077;
+}
+#enter-deadline{
+    border:2px solid #003077;
+}
+#enter-priority{
+    border:2px solid #003077;
+}
+.form-btn{
+appearance: none;
+color: white;
+background-color:#003077;
+border-radius: 4px;
+padding: 2px 8px;
+transition: background-color 0.3s;
+}
+.form-btn:hover{
+    color: #00c6f5;
+}
+
 /* iPad+ width */
 
 @media (min-width: 768px ) {

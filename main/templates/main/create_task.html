@@ -1,14 +1,98 @@
+<!-- 
+<style>
+.inupt-item{
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
+
+.form-btn{
+    margin-top: 10px;
+}
+#enter-content{
+    height: 100px;
+    width: 40%;
+    border:2px solid #003077;
+}
+#enter-header{
+    border:2px solid #003077;
+}
+#enter-deadline{
+    border:2px solid #003077;
+}
+#enter-priority{
+    border:2px solid #003077;
+}
+.form-btn{
+appearance: none;
+color: white;
+background-color:#003077;
+border-radius: 4px;
+padding: 2px 8px;
+transition: background-color 0.3s;
+}
+.form-btn:hover{
+    color: #00c6f5;
+}
+</style> -->
+
 {% extends 'main/base.html' %}
 
 {% block content %}
-<h1>{{ title }}</h1>
+<h1 class="main-title">{{ title }}</h1>
+<div>
 <form action="{% url 'create-task' %}" method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    <div class="form-error">{{ form.non_field_errors }}</div>
-    {% for f in form %}
-        <p><label class="form-label" for="{{ f.id_for_label }}">{{ f.label }}: </label>{{ f }}</p>
-        <div class="form-error">{{ f.errors }}</div>
-    {% endfor %}
-    <button type="submit">Создать</button>
+    <div class="inupt-item">
+        <label for="enter-header">
+          <span>Заголовок:</span>
+        </label>
+        <div>
+          <input
+            id="enter-header"
+            type="text"
+            placeholder="Введите название задачи"
+            required
+          />
+        </div>
+      </div>
+      <div class="inupt-item">
+        <label for="enter-content">
+          <span>Контент:</span>
+        </label>
+        <div>
+          <textarea
+            id="enter-content"
+            placeholder="Опишите задачу"
+          ></textarea>
+        </div>
+      </div>
+      <div class="inupt-item">
+        <label for="enter-deadline">
+          <span>Срок выполнения:</span>
+        </label>
+        <div>
+          <input
+            id="enter-deadline"
+            type="date"
+          />
+        </div>
+      </div>
+      <div class="inupt-item">
+        <label for="enter-priority">
+          <span>Приоритет:</span>
+        </label>
+        <div>
+          <select id="enter-priority" name="priority" required>
+            <option selected>Высокий - 1</option>
+            <option></option>
+            <option></option>
+            <option></option>
+            <option></option>
+            <option></option>
+          </select>
+        </div>
+      </div>
+    <button class="form-btn" type="submit">Создать</button>
 </form>
+</div>
 {% endblock %}

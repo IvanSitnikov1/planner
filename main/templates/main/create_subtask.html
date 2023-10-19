@@ -1,7 +1,7 @@
 {% extends 'main/base.html' %}
 
 {% block content %}
-<h1>{{ title }}</h1>
+<h1 class="main-title">{{ title }}</h1>
 <form action="{% url 'create-subtask' pk %}" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     <div class="form-error">{{ form.non_field_errors }}</div>
@@ -9,6 +9,6 @@
         <p><label class="form-label" for="{{ f.id_for_label }}">{{ f.label }}: </label>{{ f }}</p>
         <div class="form-error">{{ f.errors }}</div>
     {% endfor %}
-    <button type="submit">Создать</button>
+    <button class="form-btn" type="submit">Создать</button>
 </form>
 {% endblock %}
