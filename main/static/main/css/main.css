@@ -98,6 +98,7 @@ h1{
     display: flex;
     flex-direction: column;
     margin: 4px;
+    width: 100%;
 }
 
 /* Tasks list appearance */
