@@ -40,59 +40,15 @@ transition: background-color 0.3s;
 
 {% block content %}
 <h1 class="main-title">{{ title }}</h1>
-<div>
 <form action="{% url 'create-task' %}" method="post" enctype="multipart/form-data">
-    <div class="inupt-item">
-        <label for="enter-header">
-          <span>Заголовок:</span>
-        </label>
-        <div>
-          <input
-            id="enter-header"
-            type="text"
-            placeholder="Введите название задачи"
-            required
-          />
+    {% csrf_token %}
+    <div class="form-error">{{ form.non_field_errors }}</div>
+    {% for f in form %}
+        <div class="inupt-item">
+            <label for="{{ f.id_for_label }}">{{ f.label }}: </label><div>{{ f }}</div>
         </div>
-      </div>
-      <div class="inupt-item">
-        <label for="enter-content">
-          <span>Контент:</span>
-        </label>
-        <div>
-          <textarea
-            id="enter-content"
-            placeholder="Опишите задачу"
-          ></textarea>
-        </div>
-      </div>
-      <div class="inupt-item">
-        <label for="enter-deadline">
-          <span>Срок выполнения:</span>
-        </label>
-        <div>
-          <input
-            id="enter-deadline"
-            type="date"
-          />
-        </div>
-      </div>
-      <div class="inupt-item">
-        <label for="enter-priority">
-          <span>Приоритет:</span>
-        </label>
-        <div>
-          <select id="enter-priority" name="priority" required>
-            <option selected>Высокий - 1</option>
-            <option></option>
-            <option></option>
-            <option></option>
-            <option></option>
-            <option></option>
-          </select>
-        </div>
-      </div>
+        <div class="form-error">{{ f.errors }}</div>
+    {% endfor %}
     <button class="form-btn" type="submit">Создать</button>
 </form>
-</div>
 {% endblock %}

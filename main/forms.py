@@ -15,6 +15,12 @@ class CreateTaskForm(forms.ModelForm):
     class Meta:
         model = Task
         fields = ['title', 'content', 'deadline', 'priority']
+        widgets = {
+            'title': forms.TextInput(attrs={'id': "enter-header", 'placeholder':"Введите название задачи"}),
+            'content': forms.Textarea(attrs={'id': "enter-content", 'placeholder':"Опишите задачу"}),
+            'deadline': forms.TextInput(attrs={'id': "enter-deadline", 'type': 'date'}),
+            'priority': forms.Select(attrs={'id': "enter-priority"})
+        }
 
 
 class CreateSubTaskForm(forms.ModelForm):
