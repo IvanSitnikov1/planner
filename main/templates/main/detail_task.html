@@ -1,13 +1,18 @@
 {% extends 'main/base.html' %}
 
 {% block content %}
-<h1>{{ title }}</h1><br>
-<div>
-    <h4>{{ task.title }}</h4>
-    <p>{{ task.content }}</p>
-    <p>Срок выполнения: {{ task.deadline }}</p>
+<h1 class="main-title">{{ title }}</h1><br>
+<div class="task-container-div">
+    <h4 class="task-title">{{ task.title }}</h4>
+    <div class="task-content-div">
+        <p class="task-content">{{ task.content }}</p>
+    </div>
+    <div class="task-deadline-info-div">
+        <p class="task-deadline">Срок выполнения: {{ task.deadline }}</p>
+    <div>
     {% if task.active %}
         <h4>Задача активна</h4>
+        <a class="task-info-link" href="{% url 'close-task' task.pk %}">Закрыть задачу</a>
     {% else %}
         <h4>Задача выполнена</h4>
     {% endif %}

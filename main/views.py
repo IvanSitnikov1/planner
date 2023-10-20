@@ -95,6 +95,13 @@ def delete_task(request, pk):
     return redirect('tasks-list')
 
 
+def close_task(request, pk):
+    task = Task.objects.get(pk=pk)
+    task.active = False
+    task.save()
+    return redirect(reverse('detail-task', kwargs={'pk': pk}))
+
+
 # Создание и чтение комментариев
 class CreateAndReadComment(CreateView, ListView):
     model = Comment
