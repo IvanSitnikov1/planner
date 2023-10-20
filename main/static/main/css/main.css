@@ -189,6 +189,58 @@ transition: color 0.3s;
 .form-btn:hover{
     color: #00c6f5;
 }
+/* detail task appearance */
+
+
+#dt-content-div{
+    display: flex;
+    flex-direction: column;
+}
+#dt-task-title{
+    font-weight: bold;
+    align-self: center;
+    width: 80%;
+}
+#dt-task-content{
+    border: 2px solid #003077;
+    width: 80%;
+    align-self: center;
+    min-height: 100px;
+    height: auto;
+}
+#dt-task-menu{
+    margin-top: 10px;
+    position: relative;
+    align-self: center;
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    
+}
+.dt-task-status{
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+#dt-subtask,
+#dt-comments,
+#dt-edit,
+#dt-delete{
+    margin: 3px;
+    text-decoration: none;
+    color: white;
+    background-color:#003077;
+    border-radius: 4px;
+    padding: 2px 8px;
+    transition: color 0.3s;
+}
+#dt-subtask:hover,
+#dt-comments:hover,
+#dt-edit:hover,
+#dt-delete:hover{
+    color: #00c6f5;
+}
 
 /* iPad+ width */
 
