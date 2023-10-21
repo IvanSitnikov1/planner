@@ -31,11 +31,21 @@
     font-weight: bold;
     margin-top: 10px;
 }
+#dt-subtask-info{
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
 
+#dt-close-subtask,
+#dt-close-task,
+#dt-create-subtask,
 #dt-subtask,
 #dt-comments,
 #dt-edit,
-#dt-delete{
+#dt-delete,
+#dt-delete-subtask{
     margin: 3px;
     text-decoration: none;
     color: white;
@@ -44,50 +54,71 @@
     padding: 2px 8px;
     transition: color 0.3s;
 }
+
+#dt-close-subtask:hover,
+#dt-close-task:hover,
+#dt-create-subtask:hover,
+#dt-delete-subtask:hover,
 #dt-subtask:hover,
 #dt-comments:hover,
 #dt-edit:hover,
 #dt-delete:hover{
     color: #00c6f5;
 }
+
+#dt-subtask-content{
+    border: 2px solid #003077;
+    min-height: 100px;
+    height: auto;
+    width: 80%;
+}
+#dt-subtask-div{ margin-top: 10px;
+    position: relative;
+    align-self: center;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;}
+
 </style> -->
 {% block content %}
 <div>
-<h1 class="main-title">{{ title }}</h1>
-<div id="dt-content-div">
-    <p id="dt-task-title">{{ task.title }}</p>
-    <p id="dt-task-content">{{ task.content }}</p>
-    <div id="dt-task-menu">
-        <div id="dt-task-info">
-            <p id="dt-task-deadline">Срок выполнения: {{ task.deadline }}</p>
-            {% if task.active %}
-                <p class="dt-task-status">Задача активна</p>
-                <p><a id="dt-subtask" href="{% url 'close-task' task.pk %}">Закрыть задачу</a></p>
-            {% else %}
-                <p class="dt-task-status">Задача выполнена</p>
-            {% endif %}
-            <div>
-                <h4>Подзадачи</h4>
-                <a href="{% url 'create-subtask' task.pk %}">Добавить</a>
-                {% for subtask in subtasks %}
-                <p>{{ subtask.content }}</p>
-                {% if subtask.active %}
-                <h4>Задача активна</h4>
-                <p><a id="dt-subtask" href="{% url 'close-subtask' subtask.pk %}">Закрыть задачу</a></p>
+    <h1 class="main-title">{{ title }}</h1>
+    <div id="dt-content-div">
+        <p id="dt-task-title">{{ task.title }}</p>
+        <p id="dt-task-content">{{ task.content }}</p>
+        <div id="dt-task-menu">
+            <div id="dt-task-info">
+                <p id="dt-task-deadline">Срок выполнения: {{ task.deadline }}</p>
+                {% if task.active %}
+                    <p class="dt-task-status">Задача активна</p>
+                    <p><a id="dt-close-task" href="{% url 'close-task' task.pk %}">Закрыть задачу</a></p>
                 {% else %}
-                <h4>Задача выполнена</h4>
+                    <p class="dt-task-status">Задача выполнена</p>
                 {% endif %}
-                <a href="{% url 'delete-subtask' subtask.pk %}">Удалить</a><br>
-                {% endfor %}
+            
             </div>
+                <p><a id="dt-comments" href="{% url 'comments' task.pk %}">Комментарии</a></p>
+                <p><a id="dt-edit" href="{% url 'update-task' task.pk %}">Редактировать</a></p>
+                <p><a id="dt-delete" href="{% url 'delete-task' task.pk %}">Удалить</a></p>
+            
         </div>
-
-            <p><a id="dt-comments" href="{% url 'comments' task.pk %}">Комментарии</a></p>
-        
-        
-            <p><a id="dt-edit" href="{% url 'update-task' task.pk %}">Редактировать</a></p>
-            <p><a id="dt-delete" href="{% url 'delete-task' task.pk %}">Удалить</a></p>
-        
+        <div id="dt-subtask-div">
+            <p id class="dt-task-status">Подзадачи</p>
+            <p><a id="dt-create-subtask" href="{% url 'create-subtask' task.pk %}">Добавить</a></p>
+            {% for subtask in subtasks %}
+            <p id="dt-subtask-content">{{ subtask.content }}</p>
+            {% if subtask.active %}
+            <div id="dt-subtask-info">
+                    <p class="dt-task-status">Задача активна</p>
+                    <p><a id="dt-close-subtask" href="{% url 'close-subtask' subtask.pk %}">Закрыть задачу</a></p>
+                {% else %}
+                    <p class="dt-task-status">Задача выполнена</p>
+                {% endif %}
+                <p><a id="dt-delete-subtask" href="{% url 'delete-subtask' subtask.pk %}">Удалить</a></p>
+            </div>
+            {% endfor %}
+        </div>
     </div>
 </div>
 {% endblock %}

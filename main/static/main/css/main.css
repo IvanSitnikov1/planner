@@ -222,11 +222,21 @@ transition: color 0.3s;
     font-weight: bold;
     margin-top: 10px;
 }
+#dt-subtask-info{
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
 
+#dt-close-subtask,
+#dt-close-task,
+#dt-create-subtask,
 #dt-subtask,
 #dt-comments,
 #dt-edit,
-#dt-delete{
+#dt-delete,
+#dt-delete-subtask{
     margin: 3px;
     text-decoration: none;
     color: white;
@@ -235,12 +245,31 @@ transition: color 0.3s;
     padding: 2px 8px;
     transition: color 0.3s;
 }
+
+#dt-close-subtask:hover,
+#dt-close-task:hover,
+#dt-create-subtask:hover,
+#dt-delete-subtask:hover,
 #dt-subtask:hover,
 #dt-comments:hover,
 #dt-edit:hover,
 #dt-delete:hover{
     color: #00c6f5;
 }
+
+#dt-subtask-content{
+    border: 2px solid #003077;
+    min-height: 100px;
+    height: auto;
+    width: 80%;
+}
+#dt-subtask-div{ margin-top: 10px;
+    position: relative;
+    align-self: center;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;}
 
 /* iPad+ width */
 
