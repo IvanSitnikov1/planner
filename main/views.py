@@ -147,26 +147,19 @@ class CreateSubTask(CreateView):
         task = Task.objects.get(pk=pk)
         subtask.task = task
         subtask.save()
-        return redirect(reverse('detail-subtask', kwargs={'pk': pk}))
-
-
-class DetailSubTask(DetailView):
-    model = Task
-    template_name = 'main/detail_subtask.html'
-    context_object_name = 'task'
-
-    def get_context_data(self, *, object_list=None, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['title'] = 'Описание задачи'
-        pk = self.kwargs['pk']
-        subtasks = SubTask.objects.filter(task__pk=pk)
-        context['subtasks'] = subtasks
-        return context
+        return redirect(reverse('detail-task', kwargs={'pk': pk}))
 
 
 def delete_subtask(request, pk):
     subtask = SubTask.objects.get(pk=pk)
     subtask.delete()
+    return redirect(request.META.get('HTTP_REFERER'))
+
+
+def close_subtask(request, pk):
+    subtask = SubTask.objects.get(pk=pk)
+    subtask.active = False
+    subtask.save()
     return redirect(request.META.get('HTTP_REFERER'))
 
 

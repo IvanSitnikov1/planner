@@ -62,12 +62,26 @@
             <p id="dt-task-deadline">Срок выполнения: {{ task.deadline }}</p>
             {% if task.active %}
                 <p class="dt-task-status">Задача активна</p>
+                <p><a id="dt-subtask" href="{% url 'close-task' task.pk %}">Закрыть задачу</a></p>
             {% else %}
                 <p class="dt-task-status">Задача выполнена</p>
             {% endif %}
+            <div>
+                <h4>Подзадачи</h4>
+                <a href="{% url 'create-subtask' task.pk %}">Добавить</a>
+                {% for subtask in subtasks %}
+                <p>{{ subtask.content }}</p>
+                {% if subtask.active %}
+                <h4>Задача активна</h4>
+                <p><a id="dt-subtask" href="{% url 'close-subtask' subtask.pk %}">Закрыть задачу</a></p>
+                {% else %}
+                <h4>Задача выполнена</h4>
+                {% endif %}
+                <a href="{% url 'delete-subtask' subtask.pk %}">Удалить</a><br>
+                {% endfor %}
+            </div>
         </div>
-        
-            <p><a id="dt-subtask" href="{% url 'detail-subtask' task.pk %}">Подзадачи</a></p>
+
             <p><a id="dt-comments" href="{% url 'comments' task.pk %}">Комментарии</a></p>
         
         
@@ -76,5 +90,4 @@
         
     </div>
 </div>
-{% block subtask %}{% endblock %}
 {% endblock %}
