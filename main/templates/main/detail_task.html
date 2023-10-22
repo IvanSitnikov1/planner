@@ -3,24 +3,37 @@
 *{
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
-
+#dt-create-subtask-p{
+margin-top: 10px;
+}
+#dt-task-active-div{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
 #dt-content-div{
     display: flex;
     flex-direction: column;
 }
 #dt-task-title{
+    margin-top: 10px;
     font-weight: bold;
     align-self: center;
     width: 80%;
 }
 #dt-task-content{
+    margin-top: 10px;
     border: 2px solid #003077;
     width: 80%;
     align-self: center;
     min-height: 100px;
     height: auto;
     overflow: hidden;
+    padding: 4px;
 }
 #dt-task-menu{
     margin-top: 10px;
@@ -29,12 +42,10 @@
     width: 80%;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    
+    justify-content:flex-start;
 }
 .dt-task-status{
     font-weight: bold;
-    margin-top: 10px;
 }
 #dt-subtask-info{
     margin-top: 10px;
@@ -42,8 +53,8 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
 }
-
 #dt-close-subtask,
 #dt-close-task,
 #dt-create-subtask,
@@ -73,20 +84,23 @@
 }
 
 #dt-subtask-content{
+    margin-top: 10px;
     overflow: hidden;
     border: 2px solid #003077;
     min-height: 100px;
     height: auto;
     width: 80%;
+    padding: 4px;
 }
-#dt-subtask-div{ margin-top: 10px;
+#dt-subtask-div{ 
+    margin-top: 10px;
     position: relative;
     align-self: center;
     width: 80%;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;}
-
+    justify-content: space-between;
+}
 </style> -->
 {% block content %}
 <div>
@@ -98,8 +112,10 @@
             <div id="dt-task-info">
                 <p id="dt-task-deadline">Срок выполнения: {{ task.deadline }}</p>
                 {% if task.active %}
-                    <p class="dt-task-status">Задача активна</p>
-                    <p><a id="dt-close-task" href="{% url 'close-task' task.pk %}">Закрыть задачу</a></p>
+                    <div id="dt-task-active-div">
+                        <p class="dt-task-status">Задача активна</p>
+                        <p><a id="dt-close-task" href="{% url 'close-task' task.pk %}">Закрыть задачу</a></p>
+                    </div>
                 {% else %}
                     <p class="dt-task-status">Задача выполнена</p>
                 {% endif %}
@@ -111,8 +127,8 @@
             
         </div>
         <div id="dt-subtask-div">
-            <p id class="dt-task-status">Подзадачи</p>
-            <p><a id="dt-create-subtask" href="{% url 'create-subtask' task.pk %}">Добавить</a></p>
+            <p id="dt-subtasks-main-title" class="dt-task-status">Подзадачи</p>
+            <p id="dt-create-subtask-p"><a id="dt-create-subtask" href="{% url 'create-subtask' task.pk %}">Добавить</a></p>
             {% for subtask in subtasks %}
             <p id="dt-subtask-content">{{ subtask.content }} </p>
             {% if subtask.active %}
