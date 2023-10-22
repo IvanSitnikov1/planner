@@ -9,6 +9,12 @@ class CreateAndReadCommentForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = ['text']
+        widgets = {
+            'text': forms.Textarea(attrs={
+                'id': "enter-content",
+                'placeholder': "Напишите комментарий"
+            }),
+        }
 
 
 class CreateTaskForm(forms.ModelForm):
@@ -27,12 +33,27 @@ class CreateSubTaskForm(forms.ModelForm):
     class Meta:
         model = SubTask
         fields = ['content']
+        widgets = {
+            'content': forms.Textarea(attrs={
+                'id': "enter-content",
+                'placeholder': "Опишите подзадачу"
+            }),
+        }
 
 
 class UpdateTaskForm(forms.ModelForm):
     class Meta:
         model = Task
         fields = ['title', 'content', 'deadline', 'priority', 'active']
+        widgets = {
+            'title': forms.TextInput(attrs={'id': "enter-header",
+                                            'placeholder': "Введите название задачи"}),
+            'content': forms.Textarea(attrs={'id': "enter-content",
+                                             'placeholder': "Опишите задачу"}),
+            'deadline': forms.TextInput(
+                attrs={'id': "enter-deadline", 'type': 'date'}),
+            'priority': forms.Select(attrs={'id': "enter-priority"})
+        }
 
 
 class RegisterUserForm(UserCreationForm):

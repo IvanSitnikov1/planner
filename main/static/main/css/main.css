@@ -259,7 +259,6 @@ transition: color 0.3s;
         padding: 2px 8px;
         transition: color 0.3s;
     }
-    
     #dt-close-subtask:hover,
     #dt-close-task:hover,
     #dt-create-subtask:hover,
@@ -289,9 +288,7 @@ transition: color 0.3s;
         flex-direction: column;
         justify-content: space-between;
     }
-
 /* iPad+ width */
-
 @media (min-width: 768px ) {
     .header-bar{
         height: 60px;
