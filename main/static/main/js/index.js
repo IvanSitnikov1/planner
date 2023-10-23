@@ -1,4 +1,3 @@
-alert("dsfasdfdf")
 const sidebar = document.querySelector('.sidebar-div')
 const body = document.body
 const sidebarResize = function(){

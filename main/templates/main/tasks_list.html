@@ -1,50 +1,5 @@
 {% extends 'main/base.html' %}
-<!-- <style>
-    .main-title{
-        text-align: center;
-    }
-    .task-container-div{
-        display: flex;
-        flex-direction: column;
 
-    }
-    .task-title{
-        font-weight: bold;
-        align-self: center;
-        width: 80%;
-    }
-    .task-content-div{
-        border: 2px solid #0D6EFD;
-        border-radius: 4px;
-        width: 80%;
-        align-self: center;
-        height: 100px;
-        
-    }
-    .task-content{
-        margin: 0;
-        padding: 2px 4px;
-    }
-    .task-deadline-info-div{
-        align-self: center;
-        width: 80%;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-    }
-    .task-info-link{
-    text-decoration: none;
-    color: white;
-    background-color:#0D6EFD;
-    border-radius: 4px;
-    padding: 4px 8px;
-    transition: color 0.3s;
-    }
-    .task-info-link:hover{
-        color: black
-    }
-</style> -->
 {% block content %}
 <h1 class="main-title">{{ title }}</h1>
 {% for task in tasks %}
