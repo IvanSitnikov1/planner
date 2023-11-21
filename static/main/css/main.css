@@ -1,0 +1,335 @@
+/* main width (mobile first) */
+*{
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    font-size: small;
+    box-sizing: border-box;
+}
+.header-bar{
+    z-index: 1;
+    color: #E8EAE0;
+    display: flex;
+    flex-direction:row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #003077;
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 40px;
+}
+.header-username,
+.logout-btn,
+.login-btn,
+.registration-btn{
+    margin-left: 10px;
+    
+}
+.header-btn{
+    appearance: none;
+    color: #E8EAE0;
+    border:  1px solid #E8EAE0 ;
+    background-color: #003077;
+    border-radius: 4px;
+    padding: 4px 4px;
+    transition: all 0.3s;
+}
+.header-btn:hover{
+color: #0D6EFD;
+background-color: #E8EAE0;
+}
+.header-name-div{
+    margin-left: 80px;
+    text-align: center;
+}
+.sidebar-div{
+    z-index: 2;
+    position:relative ;
+    color: #E8EAE0;
+    width: 88px;
+    height: 100vh;
+    background-color: #202124;
+}
+h1{
+ font-size: medium;
+}
+.sidebar-name-div{
+    position: relative;
+    text-align: center;
+    top: 8px;
+}
+.sidebar-line{
+    position: relative;
+    width: 80px;
+    top: 12px;
+    left: 2px;
+    border: 1px solid #e8eae046;
+}
+.sidebar-nav{
+    position: relative;
+    top: 16px;
+    list-style-type: none;
+}
+.nav-item{
+    position:relative;
+    margin-top: 8px;
+    display: flex;
+    flex-direction: column;    
+}
+.nav-link{
+    font-size: small;
+    text-align: center;
+    text-decoration: none;
+    color: #E8EAE0;
+    border-radius: 4px;
+    margin: 0 4px 0 4px;
+    transition: background-color 0.3s;
+}
+.nav-link:hover{
+    background-color: #E8EAE0;
+    color: #202124;
+}
+.active{
+    background-color:#003077 ;
+}
+.sidebar-and-main-div{
+    position: relative;
+    display: flex;
+    background-color: #48007729;
+}
+.main-container{
+    display: flex;
+    flex-direction: column;
+    margin: 4px;
+    width: 100%;
+}
+
+.main-title{
+    text-align: center;
+}
+
+/* Tasks list appearance */
+
+.task-container-div{
+    margin-top: 12px;
+    display: flex;
+    flex-direction: column;
+
+}
+.task-title{
+    font-weight: bold;
+    align-self: center;
+    width: 80%;
+}
+.task-content-div{
+    border: 2px solid #003077;
+    border-radius: 4px;
+    width: 80%;
+    align-self: center;
+    height: 100px;
+    
+}
+.task-content{
+    margin: 0;
+    padding: 2px 4px;
+}
+.task-deadline-info-div{
+    align-self: center;
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.task-info-link{
+margin: 3px;
+text-decoration: none;
+color: white;
+background-color:#003077;
+border-radius: 4px;
+padding: 2px 8px;
+transition: all 0.3s;
+}
+.task-info-link:hover{
+    color: #00c6f5;
+}
+
+/* Create task appearance */
+
+.inupt-item{
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
+
+.form-btn{
+    margin-top: 10px;
+}
+#enter-content{
+    height: 100px;
+    width: 40%;
+    border:2px solid #003077;
+}
+#enter-header{
+    border:2px solid #003077;
+}
+#enter-deadline{
+    border:2px solid #003077;
+}
+#enter-priority{
+    border:2px solid #003077;
+}
+.form-btn{
+appearance: none;
+color: white;
+background-color:#003077;
+border-radius: 4px;
+padding: 2px 8px;
+transition: color 0.3s;
+}
+.form-btn:hover{
+    color: #00c6f5;
+}
+
+/* detail task appearance */
+
+#dt-create-subtask-p{
+    margin-top: 10px;
+    }
+    #dt-task-active-div{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 10px;
+    }
+    #dt-content-div{
+        display: flex;
+        flex-direction: column;
+    }
+    #dt-task-title{
+        margin-top: 10px;
+        font-weight: bold;
+        align-self: center;
+        width: 80%;
+    }
+    #dt-task-content{
+        margin-top: 10px;
+        border: 2px solid #003077;
+        width: 80%;
+        align-self: center;
+        min-height: 100px;
+        height: auto;
+        overflow: hidden;
+        padding: 4px;
+    }
+    #dt-task-menu{
+        margin-top: 10px;
+        position: relative;
+        align-self: center;
+        width: 80%;
+        display: flex;
+        flex-direction: row;
+        justify-content:flex-start;
+    }
+    .dt-task-status{
+        font-weight: bold;
+    }
+    #dt-subtask-info{
+        margin-top: 10px;
+        width: 80%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+    #dt-close-subtask,
+    #dt-close-task,
+    #dt-create-subtask,
+    #dt-subtask,
+    #dt-comments,
+    #dt-edit,
+    #dt-delete,
+    #dt-delete-subtask{
+        margin: 3px;
+        text-decoration: none;
+        color: white;
+        background-color:#003077;
+        border-radius: 4px;
+        padding: 2px 8px;
+        transition: color 0.3s;
+    }
+    #dt-close-subtask:hover,
+    #dt-close-task:hover,
+    #dt-create-subtask:hover,
+    #dt-delete-subtask:hover,
+    #dt-subtask:hover,
+    #dt-comments:hover,
+    #dt-edit:hover,
+    #dt-delete:hover{
+        color: #00c6f5;
+    }
+    
+    #dt-subtask-content{
+        margin-top: 10px;
+        overflow: hidden;
+        border: 2px solid #003077;
+        min-height: 100px;
+        height: auto;
+        width: 80%;
+        padding: 4px;
+    }
+    #dt-subtask-div{ 
+        margin-top: 10px;
+        position: relative;
+        align-self: center;
+        width: 80%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+/* iPad+ width */
+@media (min-width: 768px ) {
+    .header-bar{
+        height: 60px;
+    }
+    .header-username,
+    .logout-btn,
+    .login-btn,
+    .registration-btn{
+    margin-left: 24px;
+    }
+    .header-btn{
+        border:  2px solid #E8EAE0 ;
+        
+        border-radius: 4px;
+        padding: 8px 8px;
+    }
+    *{
+        font-size: medium;
+    }
+    .header-name-div{
+        margin-left: 200px;
+        text-align: center;
+    }
+    h1{
+        font-size: large;
+    }
+    .sidebar-div{
+        width: 196px;
+    }
+    .sidebar-line{
+        width: 194px;
+        top: 12px;
+        left: 2px;
+        border: 1px solid #e8eae046;
+    }
+    .nav-item{
+        margin-top: 24px;
+    }
+    .nav-link{
+        font-size: medium;
+    }
+    .main-container{
+        margin: 8px;
+    }}

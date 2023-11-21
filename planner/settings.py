@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure--1)++5jxhzs5z$y)$-!e%5t)(!%q##=0d%@w38m5w7^78=r)-9
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['176.53.161.125', 'planner.django', '127.0.0.1']
 
 
 # Application definition
@@ -78,13 +78,23 @@ WSGI_APPLICATION = 'planner.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    "default": dj_database_url.parse('postgres://planner_db_anbd_user:x4cPcYVzgJJ9U5N8VZotp9pAP4AUxcah@dpg-ckmln43j89us73e67mog-a.oregon-postgres.render.com/planner_db_anbd')
+    # 'default': {
+    #         'ENGINE': 'django.db.backends.sqlite3',
+    #         'NAME': BASE_DIR / 'db.sqlite3',
+    # }
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'HOST': 'app-postgres',
+        'PORT': 5432,
+        'NAME': 'django_app',
+        'USER': 'postgres',
+        'PASSWORD': 'postgres',
+    }
 }
 
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -125,5 +135,3 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = '/'
-
-ALLOWED_HOSTS = ['planner-w43w.onrender.com', '127.0.0.1']
