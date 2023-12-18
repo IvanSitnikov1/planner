@@ -17,4 +17,4 @@ jobs:
       - run: chmod 600 "$HOME/.ssh/key"
       # Build
       # Deploy
-      - run: ssh -i $HOME/.ssh/key -o StrictHostKeyChecking=no" --archive --compress --delete . root@176.53.161.125:/opt/planner
+      - run: ssh -i $HOME/.ssh/key -o StrictHostKeyChecking=no" root@176.53.161.125 "mkdir bbb"
