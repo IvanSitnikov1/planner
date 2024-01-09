@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure--1)++5jxhzs5z$y)$-!e%5t)(!%q##=0d%@w38m5w7^78=r)-9
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['176.53.161.125', 'planner.django', '127.0.0.1']
+ALLOWED_HOSTS = ['176.53.161.125', 'planner.django', '127.0.0.1', 'planner-w43w.onrender.com']
 
 
 # Application definition
