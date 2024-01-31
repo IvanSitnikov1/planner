@@ -21,10 +21,10 @@ services:
 #      - "/opt/planner_data:/var/lib/postgresql/data"
     environment:
       POSTGRES_DB: django_app
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: ivan
+      POSTGRES_PASSWORD: ivan
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready", "-U", "postgres"]
+      test: ["CMD-SHELL", "pg_isready", "-U", "ivan"]
       interval: 1s
       timeout: 5s
       retries: 10
