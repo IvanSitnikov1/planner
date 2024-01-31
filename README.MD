@@ -25,3 +25,5 @@ docker compose up*
 #### Скриншоты:  
 ![Image alt](https://github.com/IvanSitnikov1/planner/blob/master/Скриншоты/2024-01-31%20105313.png)  
 ![Image alt](https://github.com/IvanSitnikov1/planner/blob/master/Скриншоты/2024-01-31%20105646.png)
+
+#### Стек: Python | Django | Linux | Docker | HTML | CSS
