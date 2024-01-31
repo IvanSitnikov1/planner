@@ -23,5 +23,5 @@ docker compose build
 docker compose up
 
 Скриншоты:  
-![Image alt](https://github.com/IvanSitnikov1/planner/tree/master/Скриншоты/2024-01-31105313.png)  
-![Image alt](https://github.com/IvanSitnikov1/planner/tree/master/Скриншоты/2024-01-31105646.png)
+![Image alt](https://github.com/IvanSitnikov1/planner/blob/master/Скриншоты/2024-01-31%20105313.png)  
+![Image alt](https://github.com/IvanSitnikov1/planner/tree/master/Скриншоты/2024-01-31%20105646.png)
