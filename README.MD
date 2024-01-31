@@ -18,10 +18,10 @@
 пароль: admin* 
 
 Приложение и базу данных развернул в докер контейнерах через docker compose, использовал базу данных Postgresql  
-Запуск приложения:  
-docker compose build  
-docker compose up
+#### Запуск приложения:  
+*docker compose build  
+docker compose up*
 
-Скриншоты:  
+#### Скриншоты:  
 ![Image alt](https://github.com/IvanSitnikov1/planner/blob/master/Скриншоты/2024-01-31%20105313.png)  
 ![Image alt](https://github.com/IvanSitnikov1/planner/blob/master/Скриншоты/2024-01-31%20105646.png)
